@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import SingleTask from './SingleTask';
 import { GlobalContext } from '../../context/globalContext';
 
@@ -7,7 +7,14 @@ function Tasks() {
   return (
     <div>
       {tasks.map((task) => {
-        return <SingleTask text={task.text} done={task.done} id={task.id} />;
+        return (
+          <SingleTask
+            key={task.id}
+            text={task.text}
+            done={task.done}
+            id={task.id}
+          />
+        );
       })}
     </div>
   );

@@ -1,19 +1,28 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { GlobalContext } from '../../context/globalContext';
 
-function CreateTaskModal() {
-  const { isCreateTaskOpen, setIsCreateTaskOpen, addTask } = useContext(
-    GlobalContext
-  );
+function TaskModal() {
+  const {
+    isCreateTaskOpen,
+    setIsCreateTaskOpen,
+    saveTask,
+    isEdit,
+    editingTask,
+  } = useContext(GlobalContext);
 
   const [taskText, setTaskText] = useState('');
+
+  useEffect(() => {
+    if (isEdit) {
+      setTaskText(editingTask.text);
+    }
+  }, [editingTask, isEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-
   const save = (taskText) => {
-    addTask(taskText);
+    saveTask(taskText);
     setTaskText('');
   };
 
@@ -48,4 +57,4 @@ function CreateTaskModal() {
   );
 }
 
-export default CreateTaskModal;
+export default TaskModal;

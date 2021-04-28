@@ -3,11 +3,11 @@ import { GlobalContext } from '../../context/globalContext';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
-  const { deleteTask } = useContext(GlobalContext);
+  const { deleteTask, editTask } = useContext(GlobalContext);
   return (
     <div className='buttons-container'>
       <button>
-        <FaEdit />
+        <FaEdit onClick={() => editTask(id)} />
       </button>
       <button onClick={() => deleteTask(id)}>
         <FaTrashAlt />

@@ -3,13 +3,13 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import DayTasks from './pages/DayTasks/DayTasks';
 import { GlobalProvider } from './context/globalContext';
-import CreateTaskModal from './components/Modals/CreateTaskModal';
+import TaskModal from './components/Modals/TaskModal';
 
 function App() {
   return (
     <>
       <GlobalProvider>
-        <CreateTaskModal />
+        <TaskModal />
         <Navbar />
         <div className='main-layout'>
           <Sidebar />

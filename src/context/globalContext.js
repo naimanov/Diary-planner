@@ -9,6 +9,8 @@ const GlobalProvider = ({ children }) => {
   ]);
 
   const [isCreateTaskOpen, setIsCreateTaskOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [editingTask, setEditingTask] = useState({});
 
   const createTaskOpen = () => {
     setIsCreateTaskOpen(true);
@@ -48,6 +50,29 @@ const GlobalProvider = ({ children }) => {
     setTasks(newTasks);
   };
 
+  const editTask = (id) => {
+    setIsEdit(true);
+    const task = tasks.find((item) => String(item.id) === String(id));
+    setEditingTask(task);
+    createTaskOpen();
+  };
+
+  const saveTask = (taskText) => {
+    if (isEdit) {
+      const newTasks = tasks.map((task) => {
+        if (String(task.id) === String(editingTask.id)) {
+          task = { ...task, text: taskText };
+        }
+        return task;
+      });
+      setTasks(newTasks);
+      setIsEdit(false);
+    } else {
+      addTask(taskText);
+    }
+    setIsCreateTaskOpen(false);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -60,6 +85,10 @@ const GlobalProvider = ({ children }) => {
         setIsCreateTaskOpen,
         createTaskOpen,
         deleteTask,
+        editTask,
+        saveTask,
+        isEdit,
+        editingTask,
       }}
     >
       {children}
