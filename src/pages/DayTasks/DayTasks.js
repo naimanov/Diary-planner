@@ -1,11 +1,12 @@
 import React from 'react';
-import Task from '../../components/Task/Task';
+import Tasks from '../../components/Tasks/Tasks';
+import TasksButtons from '../../components/TasksButtons/TasksButtons';
 
 function dayTasks() {
   return (
     <div className='day-tasks'>
-      <h2>Daytasks</h2>
-      <Task />
+      <Tasks />
+      <TasksButtons />
     </div>
   );
 }

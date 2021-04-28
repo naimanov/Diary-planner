@@ -1,5 +1,8 @@
 .day-tasks {
   border: 1px solid black;
-  width: 75%;
+  width: 65%;
   height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
