@@ -1,11 +1,11 @@
 import React from 'react';
-
-function sidebar() {
+import Calendar from './Calendar';
+function Sidebar() {
   return (
     <aside className='sidebar'>
-      <h2>Sidebar</h2>
+      <Calendar />
     </aside>
   );
 }
 
-export default sidebar;
+export default Sidebar;

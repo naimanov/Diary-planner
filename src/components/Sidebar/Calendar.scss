@@ -1,0 +1,27 @@
+.day-names-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar-day {
+  width: 2rem;
+  height: 2rem;
+  color: gray;
+}
+
+.calendar-day-names {
+  color: black;
+}
+
+.calendar-title-container {
+  display: flex;
+}
+
+.current-month-day {
+  color: black;
+}

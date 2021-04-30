@@ -7,7 +7,6 @@ const GlobalProvider = ({ children }) => {
     { id: 1, done: true, text: 'First test text' },
     { id: 2, done: true, text: 'Second test text' },
   ]);
-
   const [isCreateTaskOpen, setIsCreateTaskOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [editingTask, setEditingTask] = useState({});

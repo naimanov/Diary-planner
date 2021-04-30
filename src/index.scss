@@ -3,6 +3,9 @@
 @import './components/Tasks/SingleTask.scss';
 @import './components/Modals/TaskModal.scss';
 @import './components/TasksButtons/TasksButtons.scss';
+@import './components/TasksDate/TasksDate.scss';
+@import './components/TasksDate/DateButtons.scss';
+@import './components/Sidebar/Calendar.scss';
 
 .main-layout {
   display: flex;

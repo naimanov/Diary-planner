@@ -1,11 +1,16 @@
 import React from 'react';
+import TaskDate from '../../components/TasksDate/TasksDate';
 import Tasks from '../../components/Tasks/Tasks';
 import TasksButtons from '../../components/TasksButtons/TasksButtons';
 
 function dayTasks() {
   return (
     <div className='day-tasks'>
-      <Tasks />
+      <div>
+        <TaskDate />
+        <Tasks />
+      </div>
+
       <TasksButtons />
     </div>
   );
