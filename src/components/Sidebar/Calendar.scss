@@ -9,7 +9,7 @@
 }
 
 .calendar-day {
-  width: 2rem;
+  width: 100%;
   height: 2rem;
   color: gray;
 }
@@ -24,4 +24,14 @@
 
 .current-month-day {
   color: black;
+}
+
+.calendar-day-current {
+  background-color: lightgray;
+}
+
+.calendar-day-selected {
+  box-sizing: border-box;
+
+  border: 2px solid blue;
 }

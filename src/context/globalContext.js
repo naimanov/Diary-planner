@@ -1,15 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getCurrentDate } from '../helpers/getCurrentDate';
+import { mockData } from './mockData';
+import { dateToString } from '../helpers/dateToString';
 
 const GlobalContext = React.createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [tasks, setTasks] = useState([
-    { id: 1, done: true, text: 'First test text' },
-    { id: 2, done: true, text: 'Second test text' },
-  ]);
+  const [tasks, setTasks] = useState(null);
+
   const [isCreateTaskOpen, setIsCreateTaskOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [editingTask, setEditingTask] = useState({});
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const getTasks = (date) => {
+    const data = Object.keys(mockData).find(
+      (item) => item === dateToString(date)
+    );
+
+    return mockData[data];
+  };
+
+  const prevDate = () => {
+    const date = selectedDate.setDate(selectedDate.getDate() - 1);
+    setSelectedDate(new Date(date));
+  };
+
+  const nextDate = () => {
+    const date = selectedDate.setDate(selectedDate.getDate() + 1);
+    setSelectedDate(new Date(date));
+  };
 
   const createTaskOpen = () => {
     setIsCreateTaskOpen(true);
@@ -88,6 +108,11 @@ const GlobalProvider = ({ children }) => {
         saveTask,
         isEdit,
         editingTask,
+        setSelectedDate,
+        selectedDate,
+        prevDate,
+        nextDate,
+        getTasks,
       }}
     >
       {children}
