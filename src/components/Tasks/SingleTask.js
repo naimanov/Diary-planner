@@ -1,9 +1,14 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../context/globalContext';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { TOGGLE_TASK_CHECKBOX } from '../../constants/constants';
 import SingleTaskButtons from './SingleTaskButtons';
 
 function Task({ text, done, id }) {
-  const { toggleCheckBox } = useContext(GlobalContext);
+  const dispatch = useDispatch();
+
+  const toggleCheckBox = (id) => {
+    dispatch({ type: TOGGLE_TASK_CHECKBOX, payload: id });
+  };
   return (
     <article>
       <div className='task-container'>

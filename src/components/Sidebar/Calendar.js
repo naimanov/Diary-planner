@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
 import { getMonthName } from '../../helpers/getMonthName';
-import { GlobalContext } from '../../context/globalContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_SELECTED_DATE } from '../../constants/constants';
 
 function Calendar() {
-  const { selectedDate, setSelectedDate } = useContext(GlobalContext);
+  const dispatch = useDispatch();
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
 
   const [calendarDate, setCalendarDate] = useState(new Date());
   const [calendarDays, setCalendarDays] = useState({});
@@ -66,7 +68,7 @@ function Calendar() {
   const handleCalendarDate = (e) => {
     const date = new Date(e.target.dataset.date);
     if (!window.getSelection().toString()) {
-      setSelectedDate(date);
+      dispatch({ type: SET_SELECTED_DATE, payload: date });
     }
   };
 

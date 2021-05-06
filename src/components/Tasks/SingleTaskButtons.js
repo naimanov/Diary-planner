@@ -1,9 +1,18 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../context/globalContext';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { DELETE_TASK, EDIT_TASK } from '../../constants/constants';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
-  const { deleteTask, editTask } = useContext(GlobalContext);
+  const dispatch = useDispatch();
+  const deleteTask = (id) => {
+    dispatch({ type: DELETE_TASK, payload: id });
+  };
+
+  const editTask = (id) => {
+    dispatch({ type: EDIT_TASK, payload: id });
+  };
+
   return (
     <div className='buttons-container'>
       <button>

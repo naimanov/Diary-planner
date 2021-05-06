@@ -1,14 +1,24 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../context/globalContext';
+import React from 'react';
+import { CLEAR_ALL_TASKS, OPEN_MODAL } from '../../constants/constants';
+import { useDispatch } from 'react-redux';
 
 function TasksButtons() {
-  const { clearAll, createTaskOpen } = useContext(GlobalContext);
+  const dispatch = useDispatch();
+
+  const clearAll = () => {
+    dispatch({ type: CLEAR_ALL_TASKS });
+  };
+
+  const openModal = () => {
+    dispatch({ type: OPEN_MODAL });
+  };
+
   return (
     <section className='buttons-container'>
       <button className='tasks-button' onClick={() => clearAll()}>
         clear all
       </button>
-      <button className='tasks-button' onClick={() => createTaskOpen()}>
+      <button className='tasks-button' onClick={() => openModal()}>
         add
       </button>
     </section>

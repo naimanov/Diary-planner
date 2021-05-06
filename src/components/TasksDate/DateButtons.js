@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
-import { GlobalContext } from '../../context/globalContext';
+import { SET_NEXT_DATE, SET_PREV_DATE } from '../../constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
 
 function DateButtons() {
-  const { prevDate, nextDate } = useContext(GlobalContext);
+  const dispatch = useDispatch();
+
+  const prevDate = () => {
+    dispatch({ type: SET_PREV_DATE });
+  };
+
+  const nextDate = () => {
+    dispatch({ type: SET_NEXT_DATE });
+  };
+
   return (
     <div>
       <button className='date-button' onClick={() => prevDate()}>

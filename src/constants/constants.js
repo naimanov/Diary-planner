@@ -1,0 +1,12 @@
+export const SET_SELECTED_DATE = 'SET_SELECTED_DATE';
+export const SET_NEXT_DATE = 'SET_NEXT_DATE';
+export const SET_PREV_DATE = 'SET_PREV_DATE';
+export const GET_TASKS = 'GET_TASKS';
+export const TOGGLE_TASK_CHECKBOX = 'TOGGLE_TASK_CHECKBOX';
+export const DELETE_TASK = 'DELETE_TASK';
+export const ADD_TASK = 'ADD_TASK';
+export const CLEAR_ALL_TASKS = 'CLEAR_TASKS';
+export const EDIT_TASK = 'EDIT_TASK';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const SAVE_EDITED_TASK = 'SAVE_EDITED_TASK';

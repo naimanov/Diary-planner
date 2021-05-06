@@ -1,13 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import SingleTask from './SingleTask';
-import { GlobalContext } from '../../context/globalContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { GET_TASKS } from '../../constants/constants';
 
 function Tasks() {
-  const { tasks, setTasks, selectedDate, getTasks } = useContext(GlobalContext);
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
+  const tasks = useSelector((state) => state.tasksReducer.tasks);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const date = getTasks(selectedDate);
-    setTasks(date);
+    dispatch({ type: GET_TASKS, payload: selectedDate });
   }, [selectedDate]);
 
   if (!tasks) {

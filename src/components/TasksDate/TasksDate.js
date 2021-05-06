@@ -1,14 +1,10 @@
-import React, { useContext } from 'react';
-import { getCurrentDate } from '../../helpers/getCurrentDate';
+import React from 'react';
 import DateButtons from '../TasksDate/DateButtons';
 import { getMonthName } from '../../helpers/getMonthName';
-import { GlobalContext } from '../../context/globalContext';
+import { useSelector } from 'react-redux';
 
 function TasksDate() {
-  const { selectedDate } = useContext(GlobalContext);
-  // // const currentDate = getCurrentDate();
-  // // const { currentDay, currentYear } = currentDate;
-  // // const currentMonth = getMonthName(currentDate.currentMonth).toLowerCase();
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
 
   const day = selectedDate.getDate();
   const month = getMonthName(selectedDate.getMonth()).toLowerCase();

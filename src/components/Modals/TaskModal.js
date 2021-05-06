@@ -1,14 +1,23 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { GlobalContext } from '../../context/globalContext';
+import React, { useState, useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  CLOSE_MODAL,
+  ADD_TASK,
+  SAVE_EDITED_TASK,
+} from '../../constants/constants';
 
 function TaskModal() {
-  const {
-    isCreateTaskOpen,
-    setIsCreateTaskOpen,
-    saveTask,
-    isEdit,
-    editingTask,
-  } = useContext(GlobalContext);
+  const isCreateTaskOpen = useSelector(
+    (state) => state.tasksReducer.isCreateTaskOpen
+  );
+  const isEdit = useSelector((state) => state.tasksReducer.isEdit);
+  const editingTask = useSelector((state) => state.tasksReducer.editingTask);
+
+  const dispatch = useDispatch();
+  const closeModal = () => {
+    dispatch({ type: CLOSE_MODAL });
+  };
 
   const [taskText, setTaskText] = useState('');
 
@@ -21,8 +30,11 @@ function TaskModal() {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
   const save = (taskText) => {
-    saveTask(taskText);
+    isEdit
+      ? dispatch({ type: ADD_TASK, payload: taskText })
+      : dispatch({ type: SAVE_EDITED_TASK, payload: taskText });
     setTaskText('');
   };
 
@@ -30,7 +42,7 @@ function TaskModal() {
     <article>
       <div
         className={`${isCreateTaskOpen ? 'overlay overlay-open' : 'overlay'}`}
-        onClick={() => setIsCreateTaskOpen(false)}
+        onClick={() => closeModal()}
       ></div>
       <div className={`${isCreateTaskOpen ? 'modal modal-open' : 'modal'}`}>
         <form className='create-task' onSubmit={handleSubmit}>
@@ -41,10 +53,7 @@ function TaskModal() {
             onChange={(e) => setTaskText(e.target.value)}
           />
           <div className='buttons-container'>
-            <button
-              className='modal-button'
-              onClick={() => setIsCreateTaskOpen(false)}
-            >
+            <button className='modal-button' onClick={() => closeModal()}>
               Cancel
             </button>
             <button className='modal-button' onClick={() => save(taskText)}>
