@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getMonthName } from '../../helpers/getMonthName';
+import { getMonthName } from '../../../helpers/getMonthName';
 import { useDispatch, useSelector } from 'react-redux';
 import CalendarDay from './CalendarDay';
 import CalendarHeader from './CalendarHeader';
-import { SET_SELECTED_DATE } from '../../constants/constants';
-import { getCalendar } from '../../helpers/getCalendar';
+import { SET_SELECTED_DATE } from '../../../constants/constants';
+import { getCalendar } from '../../../helpers/getCalendar';
 import CalendarDayNames from './CalendarDayNames';
 
 function Calendar() {

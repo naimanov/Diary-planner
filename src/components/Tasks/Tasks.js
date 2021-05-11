@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import SingleTask from './SingleTask';
+import SingleTask from './SingleTask/SingleTask';
 import { useSelector, useDispatch } from 'react-redux';
 import { GET_TASKS } from '../../constants/constants';
 

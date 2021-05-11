@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { TOGGLE_TASK_CHECKBOX } from '../../constants/constants';
+import { TOGGLE_TASK_CHECKBOX } from '../../../constants/constants';
 import SingleTaskButtons from './SingleTaskButtons';
 
 function Task({ text, done, id }) {

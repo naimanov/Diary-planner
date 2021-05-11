@@ -1,11 +1,11 @@
 @import './pages/dayTasks/DayTasks.scss';
 @import './components/sidebar/Sidebar.scss';
-@import './components/Tasks/SingleTask.scss';
+@import './components/Tasks/SingleTask/SingleTask.scss';
 @import './components/Modals/TaskModal.scss';
 @import './components/TasksButtons/TasksButtons.scss';
 @import './components/TasksDate/TasksDate.scss';
 @import './components/TasksDate/DateButtons.scss';
-@import './components/Sidebar/Calendar.scss';
+@import './components/Sidebar/Calendar/Calendar.scss';
 
 .main-layout {
   display: flex;

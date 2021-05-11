@@ -2,7 +2,7 @@ import React from 'react';
 import { FaChevronLeft } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
 import { SET_NEXT_DATE, SET_PREV_DATE } from '../../constants/constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 function DateButtons() {
   const dispatch = useDispatch();

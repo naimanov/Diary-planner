@@ -1,5 +1,5 @@
 import React from 'react';
-import { dateToString } from '../../helpers/dateToString';
+import { dateToString } from '../../../helpers/dateToString';
 
 function CalendarDay({ day, selectedDate }) {
   const { date, month, dateNumber } = day;

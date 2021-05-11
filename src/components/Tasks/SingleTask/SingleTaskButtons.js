@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { DELETE_TASK, EDIT_TASK } from '../../constants/constants';
+import { DELETE_TASK, EDIT_TASK } from '../../../constants/constants';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
