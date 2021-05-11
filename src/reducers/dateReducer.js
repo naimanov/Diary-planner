@@ -2,6 +2,7 @@ import {
   SET_SELECTED_DATE,
   SET_NEXT_DATE,
   SET_PREV_DATE,
+  SET_CURRENT_DATE,
 } from '../constants/constants';
 
 const defaultState = {
@@ -31,6 +32,11 @@ export const dateReducer = (state = defaultState, action) => {
         selectedDate: new Date(nextDate),
       };
 
+    case SET_CURRENT_DATE:
+      return {
+        ...state,
+        selectedDate: new Date(),
+      };
     default:
       return state;
   }

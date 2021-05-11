@@ -1,11 +1,14 @@
 import React from 'react';
+import Logo from './Logo';
+import TodayButton from './TodayButton';
 
-function navbar() {
+function Navbar() {
   return (
-    <header>
-      <h1>Navbar</h1>
+    <header className='navbar'>
+      <Logo />
+      <TodayButton />
     </header>
   );
 }
 
-export default navbar;
+export default Navbar;
