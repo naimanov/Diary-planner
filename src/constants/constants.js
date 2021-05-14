@@ -10,3 +10,4 @@ export const EDIT_TASK = 'EDIT_TASK';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SAVE_EDITED_TASK = 'SAVE_EDITED_TASK';
+export const SET_CURRENT_DATE = 'SET_CURRENT_DATE';

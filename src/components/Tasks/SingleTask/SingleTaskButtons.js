@@ -5,6 +5,7 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
   const dispatch = useDispatch();
+
   const deleteTask = (id) => {
     dispatch({ type: DELETE_TASK, payload: id });
   };
@@ -15,8 +16,8 @@ function SingleTaskButtons({ id }) {
 
   return (
     <div className='buttons-container'>
-      <button>
-        <FaEdit onClick={() => editTask(id)} />
+      <button onClick={() => editTask(id)}>
+        <FaEdit />
       </button>
       <button onClick={() => deleteTask(id)}>
         <FaTrashAlt />

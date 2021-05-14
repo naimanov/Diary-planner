@@ -33,8 +33,8 @@ function TaskModal() {
 
   const save = (taskText) => {
     isEdit
-      ? dispatch({ type: ADD_TASK, payload: taskText })
-      : dispatch({ type: SAVE_EDITED_TASK, payload: taskText });
+      ? dispatch({ type: SAVE_EDITED_TASK, payload: taskText })
+      : dispatch({ type: ADD_TASK, payload: taskText });
     setTaskText('');
   };
 
