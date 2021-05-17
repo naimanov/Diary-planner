@@ -11,3 +11,4 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SAVE_EDITED_TASK = 'SAVE_EDITED_TASK';
 export const SET_CURRENT_DATE = 'SET_CURRENT_DATE';
+export const LOGIN_USER = 'LOGIN USER';

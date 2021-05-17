@@ -1,12 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LOGIN_USER } from '../../constants/constants';
 
 function SignInForm() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // const userId = useSelector((state) => state.authReducer.userId);
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -14,7 +18,7 @@ function SignInForm() {
   const signIn = async (email, password) => {
     try {
       firebase.auth().signInWithEmailAndPassword(email, password);
-      let user = await firebase.auth().currentUser;
+      const user = await firebase.auth().currentUser;
       history.push('/home');
     } catch (e) {
       console.log(e);
