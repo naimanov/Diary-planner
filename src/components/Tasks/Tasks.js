@@ -6,7 +6,11 @@ import { GET_TASKS } from '../../constants/constants';
 function Tasks() {
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const tasks = useSelector((state) => state.tasksReducer.tasks);
+
+  const user = useSelector((state) => state.authReducer.userId);
   const dispatch = useDispatch();
+
+  console.log(user);
 
   useEffect(() => {
     dispatch({ type: GET_TASKS, payload: selectedDate });

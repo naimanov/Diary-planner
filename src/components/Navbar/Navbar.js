@@ -1,12 +1,16 @@
 import React from 'react';
 import Logo from './Logo';
 import TodayButton from './TodayButton';
+import LogOutButton from './LogOutButton';
 
 function Navbar() {
   return (
     <header className='navbar'>
       <Logo />
-      <TodayButton />
+      <div className='nav-buttons'>
+        <TodayButton />
+        <LogOutButton />
+      </div>
     </header>
   );
 }
