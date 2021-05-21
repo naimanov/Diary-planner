@@ -1,7 +1,7 @@
 import { GET_USER_ID } from '../constants/constants';
 
 const defaultState = {
-  userId: null,
+  userId: '',
 };
 
 export const authReducer = (state = defaultState, action) => {

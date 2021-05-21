@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
+import { auth } from '../../Firebase/firebase';
+import { addTask, saveEditedTask } from '../../actions/tasks';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  CLOSE_MODAL,
-  ADD_TASK,
-  SAVE_EDITED_TASK,
-} from '../../constants/constants';
+import { CLOSE_MODAL } from '../../constants/constants';
 
 function TaskModal() {
   const isCreateTaskOpen = useSelector(
@@ -13,6 +10,7 @@ function TaskModal() {
   );
   const isEdit = useSelector((state) => state.tasksReducer.isEdit);
   const editingTask = useSelector((state) => state.tasksReducer.editingTask);
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
 
   const dispatch = useDispatch();
   const closeModal = () => {
@@ -31,11 +29,20 @@ function TaskModal() {
     e.preventDefault();
   };
 
-  const save = (taskText) => {
-    isEdit
-      ? dispatch({ type: SAVE_EDITED_TASK, payload: taskText })
-      : dispatch({ type: ADD_TASK, payload: taskText });
-    setTaskText('');
+  const save = () => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        if (isEdit) {
+          dispatch(
+            saveEditedTask(user.uid, selectedDate, editingTask.id, taskText)
+          );
+          setTaskText('');
+        } else {
+          dispatch(addTask(user.uid, selectedDate, taskText));
+          setTaskText('');
+        }
+      }
+    });
   };
 
   return (

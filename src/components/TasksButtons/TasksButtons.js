@@ -1,12 +1,19 @@
 import React from 'react';
-import { CLEAR_ALL_TASKS, OPEN_MODAL } from '../../constants/constants';
-import { useDispatch } from 'react-redux';
+import { OPEN_MODAL } from '../../constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
+import { auth } from '../../Firebase/firebase';
+import { clearAllTasks } from '../../actions/tasks';
 
 function TasksButtons() {
   const dispatch = useDispatch();
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
 
   const clearAll = () => {
-    dispatch({ type: CLEAR_ALL_TASKS });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(clearAllTasks(user.uid, selectedDate));
+      }
+    });
   };
 
   const openModal = () => {

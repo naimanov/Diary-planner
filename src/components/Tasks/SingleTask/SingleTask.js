@@ -1,14 +1,21 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { TOGGLE_TASK_CHECKBOX } from '../../../constants/constants';
+import { useDispatch, useSelector } from 'react-redux';
 import SingleTaskButtons from './SingleTaskButtons';
+import { auth } from '../../../Firebase/firebase';
+import { toogleTaskCheckBox } from '../../../actions/tasks';
 
 function Task({ text, done, id }) {
   const dispatch = useDispatch();
+  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
 
   const toggleCheckBox = (id) => {
-    dispatch({ type: TOGGLE_TASK_CHECKBOX, payload: id });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch(toogleTaskCheckBox(user.uid, selectedDate, id, done));
+      }
+    });
   };
+
   return (
     <article>
       <div className='task-container'>
