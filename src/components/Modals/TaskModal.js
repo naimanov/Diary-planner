@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from '../../Firebase/firebase';
 import { addTask, saveEditedTask } from '../../actions/tasks';
 import { useDispatch, useSelector } from 'react-redux';
 import { CLOSE_MODAL } from '../../constants/constants';
@@ -11,6 +10,7 @@ function TaskModal() {
   const isEdit = useSelector((state) => state.tasksReducer.isEdit);
   const editingTask = useSelector((state) => state.tasksReducer.editingTask);
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
+  const userId = useSelector((state) => state.tasksReducer.userId);
 
   const dispatch = useDispatch();
   const closeModal = () => {
@@ -30,19 +30,13 @@ function TaskModal() {
   };
 
   const save = () => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        if (isEdit) {
-          dispatch(
-            saveEditedTask(user.uid, selectedDate, editingTask.id, taskText)
-          );
-          setTaskText('');
-        } else {
-          dispatch(addTask(user.uid, selectedDate, taskText));
-          setTaskText('');
-        }
-      }
-    });
+    if (isEdit) {
+      dispatch(saveEditedTask(userId, selectedDate, editingTask.id, taskText));
+      setTaskText('');
+    } else {
+      dispatch(addTask(userId, selectedDate, taskText));
+      setTaskText('');
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '../../Firebase/firebase';
+import firebase from 'firebase/app';
 import { useHistory } from 'react-router-dom';
 
 function SignInForm() {
@@ -12,7 +13,8 @@ function SignInForm() {
   };
 
   const signIn = async (email, password) => {
-    auth.signInWithEmailAndPassword(email, password);
+    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    await auth.signInWithEmailAndPassword(email, password);
     await history.push('/home');
   };
 

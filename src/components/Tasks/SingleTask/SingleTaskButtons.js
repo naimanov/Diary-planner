@@ -1,20 +1,16 @@
 import React from 'react';
-import { auth } from '../../../Firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { EDIT_TASK } from '../../../constants/constants';
-import { deleteTaskAction, getTasks } from '../../../actions/tasks';
+import { deleteTaskAction } from '../../../actions/tasks';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
   const dispatch = useDispatch();
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
+  const userId = useSelector((state) => state.tasksReducer.userId);
 
   const deleteTask = (id) => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(deleteTaskAction(user.uid, selectedDate, id));
-      }
-    });
+    dispatch(deleteTaskAction(userId, selectedDate, id));
   };
 
   const editTask = (id) => {

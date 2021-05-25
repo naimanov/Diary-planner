@@ -8,9 +8,11 @@ import {
   CLOSE_MODAL,
   ADD_TASK,
   SAVE_EDITED_TASK,
+  GET_USER_ID,
 } from '../constants/constants';
 
 const defaultState = {
+  userId: null,
   tasks: null,
   isCreateTaskOpen: false,
   isEdit: false,
@@ -20,22 +22,26 @@ const defaultState = {
 export const tasksReducer = (state = defaultState, action) => {
   switch (action.type) {
     case GET_TASKS:
+      console.log(action.payload);
       return {
         ...state,
         tasks: action.payload,
       };
 
+    case GET_USER_ID:
+      return { ...state, userId: action.payload };
+
     case ADD_TASK:
       return {
         ...state,
-        tasks: action.payload,
+        // tasks: action.payload,
         isCreateTaskOpen: false,
       };
 
     case SAVE_EDITED_TASK:
       return {
         ...state,
-        tasks: action.payload,
+        // tasks: action.payload,
         isEdit: false,
         isCreateTaskOpen: false,
       };
@@ -43,11 +49,14 @@ export const tasksReducer = (state = defaultState, action) => {
     case DELETE_TASK:
       return {
         ...state,
-        tasks: action.payload,
+        // tasks: action.payload,
       };
 
     case TOGGLE_TASK_CHECKBOX:
-      return { ...state, tasks: action.payload };
+      return {
+        ...state,
+        // tasks: action.payload
+      };
 
     case CLEAR_ALL_TASKS:
       return { ...state, tasks: null };

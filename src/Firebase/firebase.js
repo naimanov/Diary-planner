@@ -16,10 +16,3 @@ firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();
-
-export const callWithUserID = () => {
-  auth.onAuthStateChanged((user) => {
-    if (user) {
-    }
-  });
-};

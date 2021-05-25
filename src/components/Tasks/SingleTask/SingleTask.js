@@ -1,19 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SingleTaskButtons from './SingleTaskButtons';
-import { auth } from '../../../Firebase/firebase';
 import { toogleTaskCheckBox } from '../../../actions/tasks';
 
 function Task({ text, done, id }) {
   const dispatch = useDispatch();
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
+  const userId = useSelector((state) => state.tasksReducer.userId);
 
   const toggleCheckBox = (id) => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(toogleTaskCheckBox(user.uid, selectedDate, id, done));
-      }
-    });
+    dispatch(toogleTaskCheckBox(userId, selectedDate, id, done));
   };
 
   return (

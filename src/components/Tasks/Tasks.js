@@ -1,25 +1,42 @@
 import React, { useEffect } from 'react';
 import SingleTask from './SingleTask/SingleTask';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { getTasks } from '../../actions/tasks';
-import { auth } from '../../Firebase/firebase';
+import { GET_TASKS } from '../../constants/constants';
+import { db } from '../../Firebase/firebase';
+import { dateToString } from '../../helpers/dateToString';
 
 function Tasks() {
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const tasks = useSelector((state) => state.tasksReducer.tasks);
+  const userId = useSelector((state) => state.tasksReducer.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch(getTasks(user.uid, selectedDate));
-      }
-    });
-  }, [selectedDate]);
+    let unsubscribe;
+    if (userId) {
+      unsubscribe = db
+        .collection('users')
+        .doc(userId)
+        .collection(dateToString(selectedDate))
+        .onSnapshot((querySnapshot) => {
+          const tasks = [];
+          querySnapshot.forEach((doc) => {
+            const obj = doc.data();
+            const task = {
+              id: doc.id,
+              done: obj.done,
+              text: obj.text,
+            };
+            tasks.push(task);
+          });
+          dispatch({ type: GET_TASKS, payload: tasks });
+        });
+    }
+    return unsubscribe;
+  }, [selectedDate, userId]);
 
   if (!tasks) {
-    return null;
+    return <div>loading...</div>;
   }
 
   return (

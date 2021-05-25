@@ -1,29 +1,26 @@
 import './App.css';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import DayTasks from './pages/DayTasks/DayTasks';
 import TaskModal from './components/Modals/TaskModal';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Authorization from './pages/Authorization/Authorization';
-// import { auth } from './Firebase/firebase';
-// import { getUserId } from './actions/auth';
+import { auth } from './Firebase/firebase';
+import { GET_USER_ID } from './constants/constants';
 import { useDispatch } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       dispatch(getUserId(user.uid));
-  //       console.log('login');
-  //     } else {
-  //       console.log('logout');
-  //     }
-  //   });
-  // });
-  // console.log('render');
+  useEffect(() => {
+    const unsibscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        dispatch({ type: GET_USER_ID, payload: user.uid });
+      }
+    });
+    return unsibscribe;
+  }, []);
 
   return (
     <>
