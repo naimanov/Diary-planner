@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { EDIT_TASK } from '../../../constants/constants';
-import { deleteTaskAction } from '../../../actions/tasks';
+import { EDIT_TASK } from '../../../../constants/constants';
+import { deleteTask } from '../../../../Firebase/db';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 
 function SingleTaskButtons({ id }) {
@@ -9,8 +9,8 @@ function SingleTaskButtons({ id }) {
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const userId = useSelector((state) => state.tasksReducer.userId);
 
-  const deleteTask = (id) => {
-    dispatch(deleteTaskAction(userId, selectedDate, id));
+  const removeTask = (id) => {
+    deleteTask(userId, selectedDate, id);
   };
 
   const editTask = (id) => {
@@ -22,7 +22,7 @@ function SingleTaskButtons({ id }) {
       <button onClick={() => editTask(id)}>
         <FaEdit />
       </button>
-      <button onClick={() => deleteTask(id)}>
+      <button onClick={() => removeTask(id)}>
         <FaTrashAlt />
       </button>
     </div>

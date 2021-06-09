@@ -1,7 +1,7 @@
 import React from 'react';
-import { OPEN_MODAL } from '../../constants/constants';
+import { OPEN_MODAL } from '../../../constants/constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearAllTasks } from '../../actions/tasks';
+import { clearAllTasks } from '../../../Firebase/db';
 
 function TasksButtons() {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ function TasksButtons() {
   const userId = useSelector((state) => state.tasksReducer.userId);
 
   const clearAll = () => {
-    dispatch(clearAllTasks(userId, selectedDate));
+    clearAllTasks(userId, selectedDate);
   };
 
   const openModal = () => {

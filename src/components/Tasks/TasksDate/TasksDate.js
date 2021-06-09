@@ -1,6 +1,6 @@
 import React from 'react';
 import DateButtons from '../TasksDate/DateButtons';
-import { getMonthName } from '../../helpers/getMonthName';
+import { getMonthName } from '../../../helpers/getMonthName';
 import { useSelector } from 'react-redux';
 
 function TasksDate() {
@@ -13,9 +13,9 @@ function TasksDate() {
   return (
     <section className='date'>
       <div className='date-container'>
-        <h1 className='tasks-date'>
+        <h2 className='tasks-date'>
           {day} {month} {year}
-        </h1>
+        </h2>
       </div>
       <DateButtons />
     </section>

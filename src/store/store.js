@@ -2,13 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { dateReducer } from '../reducers/dateReducer';
 import { tasksReducer } from '../reducers/tasksReducer';
-import { authReducer } from '../reducers/authReduser';
+import { calendarReducer } from '../reducers/calendarReducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
   dateReducer,
   tasksReducer,
-  authReducer,
+  calendarReducer,
 });
 
 export const store = createStore(

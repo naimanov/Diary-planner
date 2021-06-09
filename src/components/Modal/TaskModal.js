@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { addTask, saveEditedTask } from '../../actions/tasks';
+import { addTask, saveEditedTask } from '../../Firebase/db';
 import { useDispatch, useSelector } from 'react-redux';
-import { CLOSE_MODAL } from '../../constants/constants';
+import {
+  CLOSE_MODAL,
+  ADD_TASK,
+  SAVE_EDITED_TASK,
+} from '../../constants/constants';
 
 function TaskModal() {
-  const isCreateTaskOpen = useSelector(
-    (state) => state.tasksReducer.isCreateTaskOpen
-  );
+  const [taskText, setTaskText] = useState('');
+
   const isEdit = useSelector((state) => state.tasksReducer.isEdit);
   const editingTask = useSelector((state) => state.tasksReducer.editingTask);
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const userId = useSelector((state) => state.tasksReducer.userId);
+  const isCreateTaskOpen = useSelector(
+    (state) => state.tasksReducer.isCreateTaskOpen
+  );
 
   const dispatch = useDispatch();
+
   const closeModal = () => {
     dispatch({ type: CLOSE_MODAL });
+    setTaskText('');
   };
-
-  const [taskText, setTaskText] = useState('');
 
   useEffect(() => {
     if (isEdit) {
@@ -31,10 +37,12 @@ function TaskModal() {
 
   const save = () => {
     if (isEdit) {
-      dispatch(saveEditedTask(userId, selectedDate, editingTask.id, taskText));
+      saveEditedTask(userId, selectedDate, editingTask.id, taskText);
+      dispatch({ type: SAVE_EDITED_TASK });
       setTaskText('');
     } else {
-      dispatch(addTask(userId, selectedDate, taskText));
+      addTask(userId, selectedDate, taskText);
+      dispatch({ type: ADD_TASK });
       setTaskText('');
     }
   };

@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './Logo';
-import TodayButton from './TodayButton';
-import LogOutButton from './LogOutButton';
+import Logo from './Logo/Logo';
+import TodayButton from './NavButtons/TodayButton';
+import LogOutButton from './NavButtons/LogOutButton';
 
 function Navbar() {
   return (

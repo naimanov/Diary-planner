@@ -1,9 +1,8 @@
 import React from 'react';
 import { dateToString } from '../../../helpers/dateToString';
 
-function CalendarDay({ day, selectedDate }) {
+function CalendarDay({ day, selectedDate, currentDate }) {
   const { date, month, dateNumber } = day;
-  const currentDate = new Date();
   const isSelected = dateToString(selectedDate) === dateToString(date);
   const isCurrent = dateToString(date) === dateToString(currentDate);
 

@@ -1,57 +1,17 @@
-import React, { useEffect } from 'react';
-import SingleTask from './SingleTask/SingleTask';
-import { useSelector, useDispatch } from 'react-redux';
-import { GET_TASKS } from '../../constants/constants';
-import { db } from '../../Firebase/firebase';
-import { dateToString } from '../../helpers/dateToString';
+import React from 'react';
+import TaskDate from './TasksDate/TasksDate';
+import TasksButtons from './TasksButtons/TasksButtons';
+import TasksList from './TasksList/TasksList';
 
 function Tasks() {
-  const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
-  const tasks = useSelector((state) => state.tasksReducer.tasks);
-  const userId = useSelector((state) => state.tasksReducer.userId);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    let unsubscribe;
-    if (userId) {
-      unsubscribe = db
-        .collection('users')
-        .doc(userId)
-        .collection(dateToString(selectedDate))
-        .onSnapshot((querySnapshot) => {
-          const tasks = [];
-          querySnapshot.forEach((doc) => {
-            const obj = doc.data();
-            const task = {
-              id: doc.id,
-              done: obj.done,
-              text: obj.text,
-            };
-            tasks.push(task);
-          });
-          dispatch({ type: GET_TASKS, payload: tasks });
-        });
-    }
-    return unsubscribe;
-  }, [selectedDate, userId]);
-
-  if (!tasks) {
-    return <div>loading...</div>;
-  }
-
   return (
-    <div>
-      {tasks.map((task) => {
-        return (
-          <SingleTask
-            key={task.id}
-            text={task.text}
-            done={task.done}
-            id={task.id}
-          />
-        );
-      })}
-    </div>
+    <article className='day-tasks'>
+      <div>
+        <TaskDate />
+        <TasksList />
+      </div>
+      <TasksButtons />
+    </article>
   );
 }
 

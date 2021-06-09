@@ -1,11 +1,11 @@
-@import './pages/DayTasks/DayTasks.scss';
-@import './components/sidebar/Sidebar.scss';
-@import './components/Tasks/SingleTask/SingleTask.scss';
-@import './components/Modals/TaskModal.scss';
-@import './components/TasksButtons/TasksButtons.scss';
-@import './components/TasksDate/TasksDate.scss';
-@import './components/TasksDate/DateButtons.scss';
-@import './components/Sidebar/Calendar/Calendar.scss';
+@import './pages/MainPage/MainPage.scss';
+@import './components/calendar/Sidebar.scss';
+@import './components/Tasks/TasksList/SingleTask/SingleTask.scss';
+@import './components/Modal/TaskModal.scss';
+@import './components/Tasks/TasksButtons/TasksButtons.scss';
+@import './components/Tasks/TasksDate/TasksDate.scss';
+@import './components/Tasks/TasksDate/DateButtons.scss';
+@import './components/Calendar/Calendar.scss';
 @import './components/Navbar/navbar.scss';
 
 .main-layout {
