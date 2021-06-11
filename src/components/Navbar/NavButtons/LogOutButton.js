@@ -7,7 +7,7 @@ function LoginButton() {
 
   const logout = () => {
     auth.signOut();
-    history.push('/');
+    history.push('/auth');
   };
 
   return (

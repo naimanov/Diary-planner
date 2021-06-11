@@ -1,13 +1,20 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { toogleTaskCheckBox } from '../../../../Firebase/db';
+import { useHistory } from 'react-router-dom';
 
 function Checkbox({ done, id }) {
+  const history = useHistory();
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const userId = useSelector((state) => state.tasksReducer.userId);
 
   const toggleCheckBox = (id) => {
-    toogleTaskCheckBox(userId, selectedDate, id, done);
+    try {
+      toogleTaskCheckBox(userId, selectedDate, id, done);
+    } catch (err) {
+      history.push('/error');
+      console.log(err);
+    }
   };
 
   return (

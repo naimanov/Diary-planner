@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addTask, saveEditedTask } from '../../Firebase/db';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   CLOSE_MODAL,
   ADD_TASK,
@@ -8,6 +9,7 @@ import {
 } from '../../constants/constants';
 
 function TaskModal() {
+  const history = useHistory();
   const [taskText, setTaskText] = useState('');
 
   const isEdit = useSelector((state) => state.tasksReducer.isEdit);
@@ -36,14 +38,19 @@ function TaskModal() {
   };
 
   const save = () => {
-    if (isEdit) {
-      saveEditedTask(userId, selectedDate, editingTask.id, taskText);
-      dispatch({ type: SAVE_EDITED_TASK });
-      setTaskText('');
-    } else {
-      addTask(userId, selectedDate, taskText);
-      dispatch({ type: ADD_TASK });
-      setTaskText('');
+    try {
+      if (isEdit) {
+        saveEditedTask(userId, selectedDate, editingTask.id, taskText);
+        dispatch({ type: SAVE_EDITED_TASK });
+        setTaskText('');
+      } else {
+        addTask(userId, selectedDate, taskText);
+        dispatch({ type: ADD_TASK });
+        setTaskText('');
+      }
+    } catch (err) {
+      history.push('/error');
+      console.log(err);
     }
   };
 

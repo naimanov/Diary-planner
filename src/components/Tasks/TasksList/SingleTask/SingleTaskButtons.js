@@ -3,14 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { EDIT_TASK } from '../../../../constants/constants';
 import { deleteTask } from '../../../../Firebase/db';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
 
 function SingleTaskButtons({ id }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const selectedDate = useSelector((state) => state.dateReducer.selectedDate);
   const userId = useSelector((state) => state.tasksReducer.userId);
 
   const removeTask = (id) => {
-    deleteTask(userId, selectedDate, id);
+    try {
+      deleteTask(userId, selectedDate, id);
+    } catch (err) {
+      history.push('/error');
+      console.log(err);
+    }
   };
 
   const editTask = (id) => {

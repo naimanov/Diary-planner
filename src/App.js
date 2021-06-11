@@ -1,37 +1,34 @@
 import './App.css';
-import { useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import MainPage from './pages/MainPage/MainPage';
 import TaskModal from './components/Modal/TaskModal';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Authorization from './pages/Authorization/Authorization';
-import { auth } from './Firebase/firebase';
-import { GET_USER_ID } from './constants/constants';
-import { useDispatch } from 'react-redux';
+import Registration from './pages/Authorization/Registration';
+import Error404 from './pages/Error404/Error404';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const unsibscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        dispatch({ type: GET_USER_ID, payload: user.uid });
-      }
-    });
-    return unsibscribe;
-  }, []);
-
   return (
     <>
       <Router>
         <Switch>
-          <Route exact path='/'>
+          <Route exact path='/auth'>
             <Authorization />
           </Route>
-          <Route path='/home'>
+          <Route path='/registration'>
+            <Registration />
+          </Route>
+          <Route exact path='/'>
             <TaskModal />
             <Navbar />
             <MainPage />
+          </Route>
+          <Route path='/error'>
+            <ErrorPage />
+          </Route>
+          <Route path='*'>
+            <Error404 />
           </Route>
         </Switch>
       </Router>

@@ -1,14 +1,8 @@
 import React from 'react';
-import SignInForm from './SignInForm';
-import RegistrationForm from './RegistrationForm';
+import SignInForm from '../../components/Forms/SignInForm';
 
 function Authorization() {
-  return (
-    <div>
-      <SignInForm />
-      <RegistrationForm />
-    </div>
-  );
+  return <SignInForm />;
 }
 
 export default Authorization;
