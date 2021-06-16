@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { auth } from '../../Firebase/firebase';
 import firebase from 'firebase/app';
+import { auth } from '../../Firebase/firebase';
 import Form from './Form';
 import FormError from './FormError';
 
@@ -46,13 +46,15 @@ function RegistrationForm() {
   }
 
   return (
-    <div className='form-container'>
-      <h1>Регистрация</h1>
-      <Form text={'Зарегистрироваться'} formAction={registration} />
-      <Link to='/auth' className='form-link'>
-        Авторизация
-      </Link>
-    </div>
+    <section className='from-wrapper'>
+      <div className='form-container'>
+        <h2 className='form-title'>Регистрация</h2>
+        <Form text={'Зарегистрироваться'} formAction={registration} />
+        <Link to='/auth' className='form-link'>
+          Авторизация
+        </Link>
+      </div>
+    </section>
   );
 }
 

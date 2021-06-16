@@ -1,0 +1,123 @@
+.day-tasks {
+  position: relative;
+  box-shadow: 0px 0px 8px 0px lightgray;
+  box-sizing: border-box;
+  width: $width-layout-right;
+  height: 83vh;
+  display: flex;
+  padding: 0 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+  @media screen and (max-width: $break-point-one) {
+    width: 100%;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 1em;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+}
+
+.tasks-date {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  @media screen and (max-width: 768px) {
+    font-size: 22px;
+  }
+}
+
+.date-button {
+  @include icon-button;
+  margin: 0rem;
+  margin-left: 1rem;
+  font-size: 22px;
+}
+
+.tasks-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.task-container {
+  border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1rem;
+  @media screen and (max-width: 812px) {
+    margin-right: 0rem;
+  }
+}
+
+.task {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  @media screen and (max-width: 812px) {
+    font-size: 14px;
+  }
+}
+
+.check-box {
+  margin: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+  font-size: 22px;
+}
+
+.check-mark {
+  color: #32cd32;
+  visibility: hidden;
+}
+
+.check-mark-done {
+  visibility: visible;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  @media screen and (max-width: 812px) {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
+    padding-left: 0.5rem;
+  }
+}
+
+.edit-button {
+  @include icon-button(#32cd32, #228b22, #98fb98);
+  margin-right: 1rem;
+  font-size: 22px;
+}
+
+.delete-button {
+  @include icon-button(red, #dc143c, #cd5c5c);
+  margin-right: 1rem;
+  font-size: 22px;
+}
+
+.tasks-button {
+  @include button;
+  margin: 1rem;
+  justify-self: right;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-end;
+}

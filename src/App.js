@@ -1,4 +1,3 @@
-import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import MainPage from './pages/MainPage/MainPage';
 import TaskModal from './components/Modal/TaskModal';

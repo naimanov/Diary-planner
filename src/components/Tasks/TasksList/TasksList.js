@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import SingleTask from './SingleTask/SingleTask';
+import Loader from '../../Loader/Loader';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { GET_TASKS } from '../../../constants/constants';
@@ -29,8 +30,10 @@ function Tasks() {
                 id: doc.id,
                 done: obj.done,
                 text: obj.text,
+                createdAt: obj.createdAt,
               };
               tasks.push(task);
+              tasks.sort((a, b) => a.createdAt - b.createdAt);
             });
             dispatch({ type: GET_TASKS, payload: tasks });
           });
@@ -43,11 +46,11 @@ function Tasks() {
   }, [selectedDate, userId]);
 
   if (!tasks) {
-    return <div>loading...</div>;
+    return <Loader />;
   }
 
   return (
-    <section>
+    <section className='tasks-list'>
       {tasks.map((task) => {
         return (
           <SingleTask

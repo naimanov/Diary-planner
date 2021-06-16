@@ -1,7 +1,7 @@
 import React from 'react';
-import { OPEN_MODAL } from '../../../constants/constants';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { OPEN_MODAL } from '../../../constants/constants';
 import { clearAllTasks } from '../../../Firebase/db';
 
 function TasksButtons() {
@@ -26,10 +26,10 @@ function TasksButtons() {
   return (
     <section className='buttons-container'>
       <button className='tasks-button' onClick={() => clearAll()}>
-        clear all
+        Очистить
       </button>
       <button className='tasks-button' onClick={() => openModal()}>
-        add
+        Создать
       </button>
     </section>
   );

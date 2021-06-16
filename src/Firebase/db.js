@@ -18,8 +18,12 @@ const getTaskRef = (userId, selectedDate, docId) => {
   return docRef;
 };
 
-export const addTask = (userId, selectedDate, text) => {
-  getDocRef(userId, selectedDate).add({ done: false, text: text });
+export const addTask = async (userId, selectedDate, text) => {
+  getDocRef(userId, selectedDate).add({
+    done: false,
+    text: text,
+    createdAt: Date.now(),
+  });
 };
 
 export const saveEditedTask = (userId, selectedDate, docId, newText) => {

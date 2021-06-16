@@ -6,7 +6,11 @@ function CalendarDayNames() {
   return (
     <div className='day-names-container'>
       {dayNames.map((dayName) => {
-        return <div className='calendar-day calendar-day-names'>{dayName}</div>;
+        return (
+          <div key={dayName} className='calendar-day calendar-day-names'>
+            {dayName}
+          </div>
+        );
       })}
     </div>
   );

@@ -1,0 +1,74 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  margin: auto;
+  max-width: 1440px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  width: $width-layout-left;
+  @media screen and (max-width: $break-point-one) {
+    display: none;
+  }
+}
+
+.logo-image {
+  margin-right: 1rem;
+  font-size: 24px;
+  color: $color-one;
+  @media screen and (max-width: $break-point-one) {
+    display: none;
+  }
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: $width-layout-right;
+  @media screen and (max-width: $break-point-one) {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+.today-button {
+  @include button;
+  font-size: 18px;
+}
+
+.logout-button {
+  @include icon-button;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: $color-one;
+  font-size: 30px;
+  width: 1em;
+}
+
+.calendar-button {
+  display: none;
+  @include icon-button;
+  color: $color-one;
+  font-size: 30px;
+  width: 2em;
+  height: 2em;
+  @media screen and (max-width: $break-point-one) {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.calendar-open {
+  transform: rotate(180deg);
+  transition: transform 0.3s linear;
+}
+
+.calendar-close {
+  transition: transform 0.3s linear;
+}

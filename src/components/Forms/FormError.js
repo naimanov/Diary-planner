@@ -2,10 +2,12 @@ import React from 'react';
 
 function FormError({ errorText, setIsError }) {
   return (
-    <div className='form-container'>
-      <h1>Ошибка</h1>
+    <div className='form-container error'>
+      <h2>Ошибка</h2>
       <p>{errorText}</p>
-      <button onClick={() => setIsError(false)}>OK</button>
+      <button className='error-button' onClick={() => setIsError(false)}>
+        OK
+      </button>
     </div>
   );
 }

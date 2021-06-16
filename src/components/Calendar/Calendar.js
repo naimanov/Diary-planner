@@ -10,6 +10,9 @@ import CalendarDays from './CalendarDays/CalendarDays';
 function Calendar() {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.calendarReducer.isLoading);
+  const showCalendar = useSelector(
+    (state) => state.calendarReducer.showCalendar
+  );
   const calendarDate = useSelector(
     (state) => state.calendarReducer.calendarDate
   );
@@ -28,7 +31,9 @@ function Calendar() {
   }
 
   return (
-    <article className='sidebar'>
+    <article
+      className={`${showCalendar ? 'calendar show-calendar' : 'calendar'}`}
+    >
       <CalendarHeader monthName={monthName} year={year} />
       <CalendarDayNames />
       <CalendarDays />

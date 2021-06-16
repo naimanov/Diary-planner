@@ -1,7 +1,9 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { toogleTaskCheckBox } from '../../../../Firebase/db';
-import { useHistory } from 'react-router-dom';
+
+import { FaCheck } from 'react-icons/fa';
 
 function Checkbox({ done, id }) {
   const history = useHistory();
@@ -18,10 +20,11 @@ function Checkbox({ done, id }) {
   };
 
   return (
-    <div
-      className={`${done === true ? 'check-box check-box-done' : 'check-box'}`}
-      onClick={() => toggleCheckBox(id)}
-    ></div>
+    <div className='check-box ' onClick={() => toggleCheckBox(id)}>
+      <FaCheck
+        className={`${done ? 'check-mark check-mark-done' : 'check-mark'}`}
+      />
+    </div>
   );
 }
 

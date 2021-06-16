@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 function Error404({ errorText }) {
   return (
-    <div>
+    <div className='error-page'>
       <h2>{errorText}</h2>
-      <Link to='/'>На главную страницу</Link>
+      <Link className='error-link' to='/'>
+        На главную страницу
+      </Link>
     </div>
   );
 }

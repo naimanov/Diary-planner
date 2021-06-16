@@ -18,12 +18,20 @@ function SignInForm() {
       await auth.signInWithEmailAndPassword(email, password);
       await history.push('/');
     } catch (err) {
-      if (err.code === 'auth/user-not-found') {
-        setIsError(true);
-        setErrorText('Пользователь с таким email не существует');
-        console.log(err);
-      } else {
-        console.log(err);
+      switch (err.code) {
+        case 'auth/user-not-found':
+          setIsError(true);
+          setErrorText('Пользователь с таким email не существует');
+          console.log(err);
+          break;
+        case 'auth/wrong-password':
+          setIsError(true);
+          setErrorText('Введен неверный пароль');
+          console.log(err);
+          break;
+        default:
+          console.log(err);
+          break;
       }
     }
   };
@@ -34,7 +42,7 @@ function SignInForm() {
 
   return (
     <div className='form-container'>
-      <h1>Авторизация</h1>
+      <h2 className='form-title'>Авторизация</h2>
       <Form text={'войти'} formAction={signIn} />
       <Link to='/registration' className='form-link'>
         Зарегистрироваться

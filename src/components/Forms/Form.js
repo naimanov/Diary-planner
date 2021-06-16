@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
+import { FaEyeSlash, FaEye, FaCheck } from 'react-icons/fa';
 
 function Form({ text, formAction }) {
   const [email, setEmail] = useState('');
@@ -58,6 +58,8 @@ function Form({ text, formAction }) {
         setPasswordDirty(true);
         e.target.value < 1 && setPasswordFocus(false);
         break;
+      default:
+        break;
     }
   };
 
@@ -69,7 +71,7 @@ function Form({ text, formAction }) {
     <form className='form' onSubmit={(e) => handleSubmit(e)}>
       <div className='input-wrapper'>
         <label
-          for='email'
+          htmlFor='email'
           className={`${
             emailFocus ? 'input-label input-active' : 'input-label'
           }`}
@@ -78,6 +80,7 @@ function Form({ text, formAction }) {
         </label>
         <input
           className='form-input'
+          id='email'
           name='email'
           type='text'
           value={email}
@@ -91,7 +94,7 @@ function Form({ text, formAction }) {
       </div>
       <div className='input-wrapper'>
         <label
-          for='password'
+          htmlFor='password'
           className={`${
             passwordFocus ? 'input-label input-active' : 'input-label'
           }`}
@@ -104,6 +107,7 @@ function Form({ text, formAction }) {
         <input
           className='form-input'
           type={showPassword ? 'text' : 'password'}
+          id='password'
           name='password'
           value={password}
           onChange={(e) => passwordHandler(e)}
@@ -114,17 +118,26 @@ function Form({ text, formAction }) {
       <div className='input-error-message'>
         {passwordError && passwordDirty ? <p>{passwordError}</p> : null}
       </div>
-      <label>
+
+      <label htmlFor='rememberUser' className='checkbox-label'>
         <input
           type='checkbox'
+          id='rememberUser'
           name='rememberUser'
           checked={remember}
           onChange={() => setRemember(!remember)}
+          className='form-checkbox'
         />
-        запомнить меня
+        <div className='custom-form-checkbox'>
+          {remember && <FaCheck className='form-check-mark' />}
+        </div>
+        <span>Запомнить меня</span>
       </label>
+
       <button
-        className='form-button'
+        className={`${
+          formValid ? 'form-button' : 'form-button form-button-dasabled'
+        }`}
         onClick={() => formAction(email, password, remember)}
         disabled={!formValid}
       >

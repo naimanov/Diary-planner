@@ -1,0 +1,34 @@
+@mixin button($width: 8em, $height: 2em, $font-size: $font-size-one) {
+  font-size: $font-size;
+  width: $width;
+  height: $height;
+  border-radius: 10px;
+  background-color: $color-one;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $color-two;
+  }
+  &:active {
+    background-color: $color-three;
+  }
+}
+
+@mixin icon-button(
+  $color: $color-one,
+  $color-hover: $color-two,
+  $color-active: $color-three
+) {
+  background-color: none;
+  border: none;
+  color: $color;
+  cursor: pointer;
+  height: 1em;
+  &:hover {
+    color: $color-hover;
+  }
+  &:active {
+    color: $color-active;
+  }
+}

@@ -1,8 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { SET_NEXT_DATE, SET_PREV_DATE } from '../../../constants/constants';
 import { FaChevronLeft } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
-import { SET_NEXT_DATE, SET_PREV_DATE } from '../../../constants/constants';
-import { useDispatch } from 'react-redux';
 
 function DateButtons() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function DateButtons() {
   };
 
   return (
-    <div>
+    <div className='chevron-buttons-container'>
       <button className='date-button' onClick={() => prevDate()}>
         <FaChevronLeft />
       </button>

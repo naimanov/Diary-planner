@@ -20,10 +20,14 @@ function CalendarDays() {
   };
 
   return (
-    <div className='calendar' onClick={(e) => handleCalendarDate(e)}>
+    <div
+      className='calendar-days-conteiner'
+      onClick={(e) => handleCalendarDate(e)}
+    >
       {calendarDays.map((day) => {
         return (
           <CalendarSingleDay
+            key={day.date + day.month}
             day={day}
             selectedDate={selectedDate}
             currentDate={currentDate}

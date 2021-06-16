@@ -54,7 +54,7 @@ export const tasksReducer = (state = defaultState, action) => {
       return { ...state, isCreateTaskOpen: true };
 
     case CLOSE_MODAL:
-      return { ...state, isCreateTaskOpen: false };
+      return { ...state, isCreateTaskOpen: false, isEdit: false };
 
     default:
       return state;

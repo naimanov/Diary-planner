@@ -28,6 +28,12 @@ function TaskModal() {
   };
 
   useEffect(() => {
+    if (isCreateTaskOpen) {
+      document.getElementById('modal-input').focus();
+    }
+  }, [isCreateTaskOpen]);
+
+  useEffect(() => {
     if (isEdit) {
       setTaskText(editingTask.text);
     }
@@ -54,15 +60,34 @@ function TaskModal() {
     }
   };
 
+  const onKeyDownHandler = (e) => {
+    switch (e.key) {
+      case 'Enter':
+        save(taskText);
+        break;
+      case 'Escape':
+        closeModal();
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
-    <article>
+    <article className='modal-wrapper'>
       <div
         className={`${isCreateTaskOpen ? 'overlay overlay-open' : 'overlay'}`}
         onClick={() => closeModal()}
       ></div>
+      <div className='modal-wrapper'></div>
       <div className={`${isCreateTaskOpen ? 'modal modal-open' : 'modal'}`}>
-        <form className='create-task' onSubmit={handleSubmit}>
+        <form
+          className='create-task'
+          onSubmit={handleSubmit}
+          onKeyDown={(e) => onKeyDownHandler(e)}
+        >
           <input
+            id='modal-input'
             className='modal-input'
             placeholder='Внесите заметку'
             value={taskText}
@@ -70,10 +95,10 @@ function TaskModal() {
           />
           <div className='buttons-container'>
             <button className='modal-button' onClick={() => closeModal()}>
-              Cancel
+              Отмена
             </button>
             <button className='modal-button' onClick={() => save(taskText)}>
-              Save
+              Сохранить
             </button>
           </div>
         </form>

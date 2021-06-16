@@ -3,12 +3,15 @@ import {
   GET_PREV_MONTH,
   GET_NEXT_MONTH,
   SET_CALENDAR_DATE,
+  TOGGLE_CALENDAR_SHOW,
 } from '../constants/constants';
 
 const defaultState = {
   calendarDate: new Date(),
   calendarDays: [],
   isLoading: true,
+  // only for small screen:
+  showCalendar: false,
 };
 
 export const calendarReducer = (state = defaultState, action) => {
@@ -36,6 +39,9 @@ export const calendarReducer = (state = defaultState, action) => {
         ...state,
         calendarDate: new Date(nextMonthDate),
       };
+
+    case TOGGLE_CALENDAR_SHOW:
+      return { ...state, showCalendar: !state.showCalendar };
 
     default:
       return state;

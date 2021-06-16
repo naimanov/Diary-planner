@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import { dateReducer } from '../reducers/dateReducer';
 import { tasksReducer } from '../reducers/tasksReducer';
 import { calendarReducer } from '../reducers/calendarReducer';
@@ -13,5 +12,5 @@ const rootReducer = combineReducers({
 
 export const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware())
 );

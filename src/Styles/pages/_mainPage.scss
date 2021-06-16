@@ -1,0 +1,10 @@
+.main-layout {
+  margin: auto;
+  max-width: 1440px;
+  display: flex;
+  margin-top: 1rem;
+  @media screen and (max-width: $break-point-one) {
+    flex-direction: column;
+    margin-top: 0;
+  }
+}

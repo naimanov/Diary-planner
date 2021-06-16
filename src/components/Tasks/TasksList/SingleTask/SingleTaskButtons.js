@@ -26,10 +26,10 @@ function SingleTaskButtons({ id }) {
 
   return (
     <div className='buttons-container'>
-      <button onClick={() => editTask(id)}>
+      <button className='edit-button' onClick={() => editTask(id)}>
         <FaEdit />
       </button>
-      <button onClick={() => removeTask(id)}>
+      <button className='delete-button' onClick={() => removeTask(id)}>
         <FaTrashAlt />
       </button>
     </div>
