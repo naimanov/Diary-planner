@@ -73,7 +73,7 @@ function Form({ text, formAction }) {
         <label
           htmlFor='email'
           className={`${
-            emailFocus ? 'input-label input-active' : 'input-label'
+            emailFocus || email ? 'input-label input-active' : 'input-label'
           }`}
         >
           Введите email
@@ -96,7 +96,9 @@ function Form({ text, formAction }) {
         <label
           htmlFor='password'
           className={`${
-            passwordFocus ? 'input-label input-active' : 'input-label'
+            passwordFocus || password
+              ? 'input-label input-active'
+              : 'input-label'
           }`}
         >
           Введите пароль
